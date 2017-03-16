@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('master');
-});
+Route::get('/', [
+    'uses' => 'ProfileController@viewLogin',
+    'as' => 'login'
+]);
+
+Route::get('/sign_up', [
+    'uses' => 'ProfileController@viewSignup',
+    'as' => 'signup'
+]);
+
+Route::post('/sign_up', [
+    'uses' => 'ProfileController@postSignup',
+    'as' => 'signup'
+]);
