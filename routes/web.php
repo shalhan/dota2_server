@@ -25,3 +25,13 @@ Route::post('/sign_up', [
     'uses' => 'ProfileController@postSignup',
     'as' => 'signup'
 ]);
+
+Route::post('/login',[
+    'uses' => 'ProfileController@postLogin',
+    'as' => 'login'
+]);
+
+Route::get('/dashboard',[
+    'uses' => 'MatchController@viewAllMatch',
+    'as' => 'dashboard'
+]);

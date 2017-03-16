@@ -14,14 +14,21 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
+    @if(Session::has('error'))
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+        {{Session::get('error')}}
+      </div>
+     @endif
 
     <form action="{{route('login')}}" method="post">
       {{csrf_field()}}
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Username" name="username">
+        <input type="text" class="form-control" placeholder="Username" name="UserId">
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" name="password">
+        <input type="password" class="form-control" placeholder="Password" name="Password">
       </div>
       <div class="row">
         <div class="col-xs-8">
