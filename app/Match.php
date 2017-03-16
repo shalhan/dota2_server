@@ -10,4 +10,6 @@ class Match extends Model
     protected $fillable = [
         'MatchName','MatchType','Date'
     ];
+
+    public $timestamps = false;
 }

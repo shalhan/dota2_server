@@ -11,6 +11,9 @@
 <script src="{{asset('js/jquery.slimscroll.min.js')}}"></script>
 <!-- FastClick -->
 <script src="{{asset('js/fastclick.js')}}"></script>
+<!-- bootstrap datepicker -->
+<script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
+
 <script>
   $(function () {
     $("#example1").DataTable();
@@ -22,5 +25,10 @@
       "info": true,
       "autoWidth": false
     });
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
+
   });
 </script>

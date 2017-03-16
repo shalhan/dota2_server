@@ -1,0 +1,29 @@
+.ion-plus-circled{
+  position: fixed;
+  top: 80%;
+  left: 85%;
+  font-size: 45px;
+}
+
+.acordion{
+    margin-bottom: 10px;
+}
+
+
+@media screen and (min-width: 720px) {
+  .ion-plus-circled{
+    position: fixed;
+    top: 82%;
+    left: 88%;
+    font-size: 45px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .ion-plus-circled{
+    position: fixed;
+    top: 82%;
+    left: 94%;
+    font-size: 45px;
+  }
+}

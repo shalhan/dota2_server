@@ -18,8 +18,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
    <!-- Data Table -->
   <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap.css')}}">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="{{asset('css/datepicker3.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
+    <!-- Own style -->
+  <link rel="stylesheet" href="{{asset('css/styles.css')}}">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect.

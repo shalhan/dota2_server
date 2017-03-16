@@ -52,10 +52,23 @@ class ProfileController extends Controller
 
         
         if(Auth::guard('profile')->attempt($credential)) {
-            return redirect('/dashboard');
+            $profile = Auth::guard('profile')->user();
+            $this->getSession($profile);
+            return redirect('/match');
         }else{
             Session::flash('error', 'Username or password is incorect');
             return redirect('/');
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        Session::flush();
+
+        return redirect('/');
+    }
+
+    private function getSession($profile){
+        Session::put('name',$profile->Name);
     }
 }

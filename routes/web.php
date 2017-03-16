@@ -31,7 +31,17 @@ Route::post('/login',[
     'as' => 'login'
 ]);
 
-Route::get('/dashboard',[
-    'uses' => 'MatchController@viewAllMatch',
-    'as' => 'dashboard'
+Route::get('/logout',[
+    'uses' => 'ProfileController@logout',
+    'as' => 'logout'
+]);
+
+Route::get('/match',[
+    'uses' => 'MatchController@viewAllMatches',
+    'as' => 'match'
+]);
+
+Route::post('/createMatch',[
+    'uses' => 'MatchController@createMatch',
+    'as' => 'createMatch'
 ]);
