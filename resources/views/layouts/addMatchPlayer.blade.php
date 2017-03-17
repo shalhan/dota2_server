@@ -18,7 +18,7 @@
         <!-- /.box-header -->
         <div class="box-body">
           <div class="row">
-            <form action="{{url('match=' . $id)}}" method="post">
+            <form action="{{url('match=' . $id . '/add')}}" method="post">
             {{csrf_field()}}
             @if(count($errors) > 0)
         <div class="alert alert-danger" style="width:80%">
@@ -29,6 +29,13 @@
             </ul>
         </div>
     @endif
+     @if(Session::has('reach_limit'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+                    {{Session::get('reach_limit')}}
+                </div>
+                @endif
             <div class="col-md-8">
                 <div class="form-group">
                     <select class="form-control select2" multiple="multiple" data-placeholder="Select players" style="width: 100%;" name="player[]">

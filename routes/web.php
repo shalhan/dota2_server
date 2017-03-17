@@ -59,7 +59,12 @@ Route::get('/match={id}',[
     'as' => 'addMatchPlayer'
 ]);
 
-Route::post('/match={id}',[
+Route::post('/match={id}/add',[
     'uses' => 'MatchPlayerController@addMatchPlayers',
-    'as' => 'addMatchPlayer'
+    'as' => 'addPlayer'
+]);
+
+Route::get('/matchPlayer={id}',[
+    'uses' => 'MatchPlayerController@delMatchPlayers',
+    'as' => 'delPlayer'
 ]);

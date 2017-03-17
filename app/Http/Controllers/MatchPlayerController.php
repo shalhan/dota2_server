@@ -6,48 +6,29 @@ use Illuminate\Http\Request;
 use App\Player;
 use App\MatchPlayer;
 use App\Match;
+use Session;
 
 class MatchPlayerController extends Controller
 {   
     public function viewAllMatches(){
         $match = Match::get();
-        // $matchPlay = array();
-        // $i = 0;
-        // $j = 0;
-        // foreach($match as $m){
-        //     // echo $m->MatchName . "<br>";
-        //     $matchPlay[$m->MatchName][$m->Date][$i]=null;
-        //     $matchPlayers = MatchPlayer::where('MatchID',$m->MatchID)->get();
-        //     foreach($matchPlayers as $mp){
-
-        //         $matchPlay[$m->MatchName][$m->Date][$i] = $mp->player->Name;
-        //         $i++;
-        //         // echo $mp->player->Name . "<br>";
-        //     }
-        //     $i=0;
-        // }
-
-        // echo count($matchPlay);
-        // $length = count($matchPlay);
-        // for($i=0;$i<$length;$i++){
-        //     echo array_keys($matchPlay['OG vs Newbee']);
-        //     foreach($matchPlay[$i] as $m){
-        //         echo $m;
-        //     }
-        //     echo "<br>";
-        // }
-        // echo count($matchPlay[1]);
-        // echo $matchPlay[0][5];
-        // print_r($matchPlay);
-        // foreach($matchPlayers as $m){
-        //     echo $m->match->MatchName;
-        // }
-        // print_r($matchesPlayer);
+  
         return view('layouts.match', compact('match'));
     }
 
     public function viewAddMatchPlayers($id){
-        $players = Player::get();
+        $playerId = array();
+        $matchPlayer = MatchPlayer::where('MatchID',$id)->get();
+        
+        foreach($matchPlayer as $mp){
+            array_push($playerId, $mp->PlayerID);
+        }
+
+        $playerId = array_unique($playerId);
+
+        $players = Player::whereNotIn('PlayerID', $playerId)->get();
+        
+        
         return view('layouts.addMatchPlayer', compact('id','players'));
     }
 
@@ -56,17 +37,30 @@ class MatchPlayerController extends Controller
             'player' => 'required'
         ]);
 
-        $players = $r->input('player');
-        foreach($players as $p){
+        $countMatch = MatchPlayer::where('MatchID', $id)->count() + count($id);
+        if($countMatch<=10){
+             $players = $r->input('player');
+            foreach($players as $p){
 
-            $matchPlayer = new MatchPlayer([
-                'MatchID' => $id,
-                'PlayerID' => $p
-            ]);
+                $matchPlayer = new MatchPlayer([
+                    'MatchID' => $id,
+                    'PlayerID' => $p
+                ]);
 
-            $matchPlayer->save();
+             $matchPlayer->save();
+            }
+
+            return redirect('match');
+        }else{
+            Session::flash('reach_limit', 'Player has reached a limit (Max : 10 players)');
+            // echo Session::get('reach_limit');
+            return redirect('match=' . $id);
         }
+    }
 
-        return redirect('match');
+    public function delMatchPlayers($id){
+        MatchPlayer::where('MatchPlayerID',$id)->delete();
+
+        return redirect()->back();
     }
 }

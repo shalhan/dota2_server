@@ -62,12 +62,12 @@
                                         $players = array(); 
                                         $players = getPlayer($m->MatchID);
                                     ?>
-                                    @foreach($players as $player)
+                                    @foreach($players as $key => $player)
                                     <tr>
                                         <td></td>
                                         <td>{{$player}}</td>
                                         <td></td>
-                                        <td><span class="badge bg-red">55%</span></td>
+                                        <td><a href="{{ url('matchPlayer=' . $key) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
