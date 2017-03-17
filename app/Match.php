@@ -12,4 +12,8 @@ class Match extends Model
     ];
 
     public $timestamps = false;
+
+    public function matchplayer(){
+        return $this->hasMany('App\MatchPlayer');
+    }
 }

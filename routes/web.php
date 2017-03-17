@@ -11,37 +11,55 @@
 |
 */
 
+//Player
 Route::get('/', [
-    'uses' => 'ProfileController@viewLogin',
+    'uses' => 'PlayerController@viewLogin',
     'as' => 'login'
 ]);
 
 Route::get('/sign_up', [
-    'uses' => 'ProfileController@viewSignup',
+    'uses' => 'PlayerController@viewSignup',
     'as' => 'signup'
 ]);
 
 Route::post('/sign_up', [
-    'uses' => 'ProfileController@postSignup',
+    'uses' => 'PlayerController@postSignup',
     'as' => 'signup'
 ]);
 
 Route::post('/login',[
-    'uses' => 'ProfileController@postLogin',
+    'uses' => 'PlayerController@postLogin',
     'as' => 'login'
 ]);
 
 Route::get('/logout',[
-    'uses' => 'ProfileController@logout',
+    'uses' => 'PlayerController@logout',
     'as' => 'logout'
 ]);
 
-Route::get('/match',[
-    'uses' => 'MatchController@viewAllMatches',
-    'as' => 'match'
+Route::get('/player',[
+    'uses' => 'PlayerController@viewPlayers',
+    'as' => 'player'
 ]);
 
+//Match
 Route::post('/createMatch',[
     'uses' => 'MatchController@createMatch',
     'as' => 'createMatch'
+]);
+
+//MatchPlayer
+Route::get('/match',[
+    'uses' => 'MatchPlayerController@viewAllMatches',
+    'as' => 'match'
+]);
+
+Route::get('/match={id}',[
+    'uses' => 'MatchPlayerController@viewAddMatchPlayers',
+    'as' => 'addMatchPlayer'
+]);
+
+Route::post('/match={id}',[
+    'uses' => 'MatchPlayerController@addMatchPlayers',
+    'as' => 'addMatchPlayer'
 ]);

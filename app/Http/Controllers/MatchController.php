@@ -8,10 +8,7 @@ use Session;
 
 class MatchController extends Controller
 {
-    public function viewAllMatches(){
-        $matches = Match::get();
-        return view('layouts.match', compact('matches'));
-    }
+    
 
     public function createMatch(Request $r){
         $this->validate($r,[

@@ -9,6 +9,14 @@
     margin-bottom: 10px;
 }
 
+i.green{
+  color: #2ecc71;
+}
+
+.box-header>.box-tools{
+  text-align: right;
+  max-width: 250px;
+}
 
 @media screen and (min-width: 720px) {
   .ion-plus-circled{

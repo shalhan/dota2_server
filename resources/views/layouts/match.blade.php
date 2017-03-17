@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="col-xs-12">
          @if(count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
@@ -27,15 +27,18 @@
             {{Session::get('createMatch')}}
             </div>
         @endif
-        @foreach($matches as $match)
+        @foreach($match as $m)
         <div class="box box-info acordion">
             <div class="box-header with-border">
-                <h3 class="box-title">{{$match->MatchName}}</h3><br>
-                <small>{{date("d-m-Y", strtotime($match->Date))}}</small>
+                <h3 class="box-title"> {{$m->MatchName}}</h3><br>
+              
+               <small>{{$m->Date}}</small>
 
                 <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
+                    
+                    <a href="{{url('match=' . $m->MatchID)}}"><i class="fa fa-user-plus green" aria-hidden="true"></i></a>
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                  
                 </div>
                 <!-- /.box-tools -->
             </div>
@@ -55,12 +58,18 @@
                                         <th></th>
                                         <th style="width: 40px"></th>
                                     </tr>
+                                    <?php 
+                                        $players = array(); 
+                                        $players = getPlayer($m->MatchID);
+                                    ?>
+                                    @foreach($players as $player)
                                     <tr>
                                         <td></td>
-                                        <td>Shalhan</td>
+                                        <td>{{$player}}</td>
                                         <td></td>
                                         <td><span class="badge bg-red">55%</span></td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

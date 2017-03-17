@@ -32,8 +32,8 @@
       <ul class="sidebar-menu">
         <li class="header">Menu</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Profile</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Match</span></a></li>
+        <li class="{{ (Route::currentRouteName() == 'player' ? 'active' : '') }}"><a href="{{route('player')}}"><i class="fa fa-user"></i> <span>Player</span></a></li>
+        <li class="{{ (Route::currentRouteName() == 'match' ? 'active' : '') }}"><a href="{{route('match')}}"><i class="fa fa-gamepad"></i> <span>Match</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

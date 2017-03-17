@@ -13,7 +13,8 @@
 <script src="{{asset('js/fastclick.js')}}"></script>
 <!-- bootstrap datepicker -->
 <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
-
+<!-- Select2 -->
+<script src="{{asset('js/select2.full.min.js')}}"></script>
 <script>
   $(function () {
     $("#example1").DataTable();
@@ -29,6 +30,15 @@
     $('#datepicker').datepicker({
       autoclose: true
     });
+    $(".select2").select2();
 
   });
 </script>
+
+ <script>
+    $(function() {
+        $('#addPlayers').click(function() {
+          $("#inputPlayers").toggle('slow');
+        });
+    });
+  </script>

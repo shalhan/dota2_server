@@ -48,7 +48,12 @@ return [
 
         'profile' => [
             'driver' => 'session',
-            'provider' => 'profiles'
+            'provider' => 'profiles',
+        ],
+
+        'player' => [
+            'driver' => 'session',
+            'provider' => 'players',
         ]
     ],
 
@@ -78,6 +83,11 @@ return [
         'profiles' => [
             'driver' => 'eloquent',
             'model' => App\Profile::class,
+        ],
+
+        'players' => [
+            'driver' => 'eloquent',
+            'model' => App\Player::class,
         ],
 
         // 'users' => [

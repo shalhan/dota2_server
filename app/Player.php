@@ -6,9 +6,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class Profile extends Authenticatable
+class Player extends Authenticatable
 {
     use Notifiable;
+
+    protected $primaryKey ="PlayerID";
 
     protected $fillable =
     [
@@ -24,6 +26,10 @@ class Profile extends Authenticatable
 
     public function getAuthPassword(){
         return $this->Password;
+    }
+
+    public function matchplayer(){
+        return $this->hasMany('App\MatchPlayer','');
     }
 
 }
