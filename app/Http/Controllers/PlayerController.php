@@ -6,15 +6,13 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Player;
 use Session;
+use Illuminate\Support\Facades\Input;
 
 class PlayerController extends Controller
 {
     public function viewPlayers(){
-        return view('layouts.player');
-    }
-
-    public function addPlayer(Request $r){
-
+        $players = Player::get();
+        return view('layouts.player', compact('players'));
     }
     
     public function viewLogin(){
@@ -25,7 +23,7 @@ class PlayerController extends Controller
         return view('signup');
     }
 
-    public function postSignup(Request $r){
+    public function addPlayer(Request $r){
         $this->validate($r,[
             'Name' => 'required|min:6',
             'UserId' => 'required|unique:players|min:4',
@@ -44,7 +42,29 @@ class PlayerController extends Controller
 
         Session::flash('thanks','Thanks for signing up!');
 
-        return redirect('/');
+        return redirect('/player');
+    }
+
+    public function delPlayer($id){
+        Player::where('PlayerID', $id)->delete();
+
+        Session::flash('delete_player', 'Delete Player Success');
+
+        return redirect()->back();
+    }
+
+    public function viewEditPlayer($id){
+        $players = Player::where('PlayerID',$id)->first();
+        return view('layouts.editPlayer', compact(['id','players']));
+    }
+
+    public function editPlayer(Request $r, $id){
+        $player = Player::findOrFail($id);
+        
+        $player->update(Input::only('Name','UserId','Email'));
+
+        Session::flash('success_edit', "Edit success!");
+        return redirect('/player');
     }
 
     public function postLogin(Request $r){

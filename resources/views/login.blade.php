@@ -32,7 +32,7 @@
       </div>
       <div class="row">
         <div class="col-xs-8">
-          <a href="{{route('signup')}}" class="text-center">Register a new membership</a>
+          
         </div>
         <!-- /.col -->
         <div class="col-xs-4">

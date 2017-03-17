@@ -37,7 +37,8 @@ class MatchPlayerController extends Controller
             'player' => 'required'
         ]);
 
-        $countMatch = MatchPlayer::where('MatchID', $id)->count() + count($id);
+        $countMatch = MatchPlayer::where('MatchID', $id)->count() + count($r->input('player'));
+        
         if($countMatch<=10){
              $players = $r->input('player');
             foreach($players as $p){
@@ -61,6 +62,7 @@ class MatchPlayerController extends Controller
     public function delMatchPlayers($id){
         MatchPlayer::where('MatchPlayerID',$id)->delete();
 
+        Session::flash('delete_player_match', 'Delete Player Success');
         return redirect()->back();
     }
 }
