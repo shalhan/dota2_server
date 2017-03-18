@@ -36,7 +36,7 @@ class Player extends Authenticatable
     }
 
     public function matchplayer(){
-        return $this->hasMany('App\MatchPlayer','');
+        return $this->hasMany('App\MatchPlayer');
     }
 
 }
