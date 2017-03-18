@@ -16,6 +16,7 @@ class PlayerController extends Controller
     }
     
     public function viewLogin(){
+        
         return view('login');
     }
 
@@ -73,6 +74,11 @@ class PlayerController extends Controller
     }
 
     public function postLogin(Request $r){
+        $this->validate($r,[
+            'UserId' => 'required',
+            'Password' => 'required',
+        ]);
+
         $credential = array(
             'UserId' => $r->input('UserId'),
             'password' => $r->input('Password')
