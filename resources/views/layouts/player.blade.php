@@ -11,6 +11,15 @@ Management
 @section('content')
 <div class"row">
     <div class="col-xs-12">
+    @if(count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
          @if(Session::has('success_edit'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -18,11 +27,25 @@ Management
             {{Session::get('success_edit')}}
         </div>
         @endif
+        @if(Session::has('success_adding'))
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+            {{Session::get('success_adding')}}
+        </div>
+        @endif
          @if(Session::has('delete_player'))
         <div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 
             {{Session::get('delete_player')}}
+        </div>
+        @endif
+        @if(Session::has('nothing_edited'))
+        <div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+            {{Session::get('nothing_edited')}}
         </div>
         @endif
         <div class="box">

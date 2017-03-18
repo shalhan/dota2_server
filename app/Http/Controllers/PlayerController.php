@@ -40,7 +40,7 @@ class PlayerController extends Controller
 
         $profile->save();
 
-        Session::flash('thanks','Thanks for signing up!');
+        Session::flash('success_adding','Adding player success!');
 
         return redirect('/player');
     }
@@ -60,11 +60,16 @@ class PlayerController extends Controller
 
     public function editPlayer(Request $r, $id){
         $player = Player::findOrFail($id);
-        
-        $player->update(Input::only('Name','UserId','Email'));
 
-        Session::flash('success_edit', "Edit success!");
-        return redirect('/player');
+        if(Input::get('Name') || Input::get('UserId') || Input::get('Email')){
+            $player->update(Input::only('Name','UserId','Email'));
+            Session::flash('success_edit', "Edit success!");
+            return redirect('/player');
+        }else{
+            Session::flash('nothing_edited', "Nothing change!");
+            return redirect('/player');    
+        }
+        
     }
 
     public function postLogin(Request $r){
